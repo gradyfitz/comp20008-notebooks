@@ -1,0 +1,184 @@
+Country,Country Code,Year,Life expectancy at birth (years)
+Afghanistan,AFG,2016,Low
+Albania,ALB,2016,High
+Algeria,DZA,2016,High
+Angola,AGO,2016,Low
+Antigua and Barbuda,ATG,2016,Medium
+Argentina,ARG,2016,High
+Armenia,ARM,2016,Medium
+Australia,AUS,2016,High
+Austria,AUT,2016,High
+Azerbaijan,AZE,2016,Medium
+Bahamas,BHS,2016,High
+Bahrain,BHR,2016,High
+Bangladesh,BGD,2016,Medium
+Barbados,BRB,2016,High
+Belarus,BLR,2016,Medium
+Belgium,BEL,2016,High
+Belize,BLZ,2016,Medium
+Benin,BEN,2016,Low
+Bhutan,BTN,2016,Medium
+Bolivia (Plurinational State of),BOL,2016,Medium
+Bosnia and Herzegovina,BIH,2016,High
+Botswana,BWA,2016,Low
+Brazil,BRA,2016,High
+Brunei Darussalam,BRN,2016,High
+Bulgaria,BGR,2016,Medium
+Burkina Faso,BFA,2016,Low
+Burundi,BDI,2016,Low
+Cabo Verde,CPV,2016,Medium
+Cambodia,KHM,2016,Medium
+Cameroon,CMR,2016,Low
+Canada,CAN,2016,High
+Central African Republic,CAF,2016,Low
+Chad,TCD,2016,Low
+Chile,CHL,2016,High
+China,CHN,2016,High
+Colombia,COL,2016,High
+Comoros,COM,2016,Low
+Congo,COG,2016,Low
+Costa Rica,CRI,2016,High
+Croatia,HRV,2016,High
+Cuba,CUB,2016,High
+Cyprus,CYP,2016,High
+Czechia,CZE,2016,High
+Côte d'Ivoire,CIV,2016,Low
+Democratic People's Republic of Korea,PRK,2016,Medium
+Democratic Republic of the Congo,COD,2016,Low
+Denmark,DNK,2016,High
+Djibouti,DJI,2016,Low
+Dominican Republic,DOM,2016,Medium
+Ecuador,ECU,2016,High
+Egypt,EGY,2016,Medium
+El Salvador,SLV,2016,Medium
+Equatorial Guinea,GNQ,2016,Low
+Eritrea,ERI,2016,Low
+Estonia,EST,2016,High
+Eswatini,SWZ,2016,Low
+Ethiopia,ETH,2016,Low
+Fiji,FJI,2016,Medium
+Finland,FIN,2016,High
+France,FRA,2016,High
+Gabon,GAB,2016,Low
+Gambia,GMB,2016,Low
+Georgia,GEO,2016,Medium
+Germany,DEU,2016,High
+Ghana,GHA,2016,Low
+Greece,GRC,2016,High
+Grenada,GRD,2016,Medium
+Guatemala,GTM,2016,Medium
+Guinea,GIN,2016,Low
+Guinea-Bissau,GNB,2016,Low
+Guyana,GUY,2016,Low
+Haiti,HTI,2016,Low
+Honduras,HND,2016,High
+Hungary,HUN,2016,High
+Iceland,ISL,2016,High
+India,IND,2016,Medium
+Indonesia,IDN,2016,Medium
+Iran (Islamic Republic of),IRN,2016,High
+Iraq,IRQ,2016,Medium
+Ireland,IRL,2016,High
+Israel,ISR,2016,High
+Italy,ITA,2016,High
+Jamaica,JAM,2016,High
+Japan,JPN,2016,High
+Jordan,JOR,2016,Medium
+Kazakhstan,KAZ,2016,Medium
+Kenya,KEN,2016,Low
+Kiribati,KIR,2016,Low
+Kuwait,KWT,2016,Medium
+Kyrgyzstan,KGZ,2016,Medium
+Lao People's Democratic Republic,LAO,2016,Low
+Latvia,LVA,2016,Medium
+Lebanon,LBN,2016,High
+Lesotho,LSO,2016,Low
+Liberia,LBR,2016,Low
+Libya,LBY,2016,Medium
+Lithuania,LTU,2016,Medium
+Luxembourg,LUX,2016,High
+Madagascar,MDG,2016,Low
+Malawi,MWI,2016,Low
+Malaysia,MYS,2016,High
+Maldives,MDV,2016,High
+Mali,MLI,2016,Low
+Malta,MLT,2016,High
+Mauritania,MRT,2016,Low
+Mauritius,MUS,2016,Medium
+Mexico,MEX,2016,High
+Micronesia (Federated States of),FSM,2016,Medium
+Mongolia,MNG,2016,Medium
+Montenegro,MNE,2016,High
+Morocco,MAR,2016,High
+Mozambique,MOZ,2016,Low
+Myanmar,MMR,2016,Low
+Namibia,NAM,2016,Low
+Nepal,NPL,2016,Medium
+Netherlands,NLD,2016,High
+New Zealand,NZL,2016,High
+Nicaragua,NIC,2016,High
+Niger,NER,2016,Low
+Nigeria,NGA,2016,Low
+Norway,NOR,2016,High
+Oman,OMN,2016,High
+Pakistan,PAK,2016,Low
+Panama,PAN,2016,High
+Papua New Guinea,PNG,2016,Low
+Paraguay,PRY,2016,Medium
+Peru,PER,2016,High
+Philippines,PHL,2016,Medium
+Poland,POL,2016,High
+Portugal,PRT,2016,High
+Qatar,QAT,2016,High
+Republic of Korea,KOR,2016,High
+Republic of Moldova,MDA,2016,Medium
+Republic of North Macedonia,MKD,2016,High
+Romania,ROU,2016,High
+Russian Federation,RUS,2016,Medium
+Rwanda,RWA,2016,Medium
+Saint Lucia,LCA,2016,High
+Saint Vincent and the Grenadines,VCT,2016,Medium
+Samoa,WSM,2016,High
+Sao Tome and Principe,STP,2016,Medium
+Saudi Arabia,SAU,2016,Medium
+Senegal,SEN,2016,Low
+Serbia,SRB,2016,High
+Seychelles,SYC,2016,Medium
+Sierra Leone,SLE,2016,Low
+Singapore,SGP,2016,High
+Slovakia,SVK,2016,High
+Slovenia,SVN,2016,High
+Solomon Islands,SLB,2016,Medium
+Somalia,SOM,2016,Low
+South Africa,ZAF,2016,Low
+South Sudan,SSD,2016,Low
+Spain,ESP,2016,High
+Sri Lanka,LKA,2016,High
+Sudan,SDN,2016,Low
+Suriname,SUR,2016,Medium
+Sweden,SWE,2016,High
+Switzerland,CHE,2016,High
+Syrian Arab Republic,SYR,2016,Low
+Tajikistan,TJK,2016,Medium
+Thailand,THA,2016,High
+Timor-Leste,TLS,2016,Medium
+Togo,TGO,2016,Low
+Tonga,TON,2016,Medium
+Trinidad and Tobago,TTO,2016,Medium
+Tunisia,TUN,2016,High
+Turkey,TUR,2016,High
+Turkmenistan,TKM,2016,Medium
+Uganda,UGA,2016,Low
+Ukraine,UKR,2016,Medium
+United Arab Emirates,ARE,2016,High
+United Kingdom of Great Britain and Northern Ireland,GBR,2016,High
+United Republic of Tanzania,TZA,2016,Low
+United States of America,USA,2016,High
+Uruguay,URY,2016,High
+Uzbekistan,UZB,2016,Medium
+Vanuatu,VUT,2016,Medium
+Venezuela (Bolivarian Republic of),VEN,2016,Medium
+Viet Nam,VNM,2016,High
+Yemen,YEM,2016,Low
+Zambia,ZMB,2016,Low
+Zimbabwe,ZWE,2016,Low
