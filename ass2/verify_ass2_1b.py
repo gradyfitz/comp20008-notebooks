@@ -179,6 +179,10 @@ try:
     assert clean_string('product_id') in [clean_string(col) for col in student_amazon_df.columns], "column product_id missing"
     assert len(student_amazon_df.columns) == 2, "Unexpected columns {}".format([col for col in student_amazon_df.columns if clean_string(col) not in ['block_key', 'product_id']])
 
+    timelog("Converting block keys to strings")
+    student_google_df[get_cleaned_dicts(student_google_df)['block_key']] = student_google_df[get_cleaned_dicts(student_google_df)['block_key']].apply(str)
+    student_amazon_df[get_cleaned_dicts(student_amazon_df)['block_key']] = student_amazon_df[get_cleaned_dicts(student_amazon_df)['block_key']].apply(str)
+    
     timelog("Loading {}".format(solution_output_name))
 
     solution_df = pd.read_csv("{}".format(solution_output_name))
