@@ -111,43 +111,118 @@ try:
 
     timelog("Performing basic checking on datasets.")
     student_rows, student_columns = student_df.shape
-    assert student_rows >= 2, "Solution missing rows."
+    # 20200524 GJF - Now checks all features can be extracted instead of just the first 
+    #    two.
+    assert student_rows >= 20, "Solution missing rows (values should be present for all twenty features, only {} rows found).".format(student_rows)
 
     cleaned_rows_dict = get_cleaned_dicts(student_df)
-
+    
     # Extract rows.
-    # Determine whether the access to electricity column is escaped or not.
-    if len(student_df[student_df.index == 'Access to electricity']) > 0:
-        escaped = False
-        ate_row = student_df[student_df.index == "Access to electricity"]
-        ate_median = ate_row[cleaned_rows_dict['median']].iloc[0]
-        ate_mean = ate_row[cleaned_rows_dict['mean']].iloc[0]
-        ate_variance = ate_row[cleaned_rows_dict['variance']].iloc[0]
+    expected_feature_rows = {
+        "Access to electricity, rural (% of rural population) [EG.ELC.ACCS.RU.ZS]": {
+          "short": "Access to electricity",
+          "values": None
+        },
+        "Adjusted savings: particulate emission damage (% of GNI) [NY.ADJ.DPEM.GN.ZS]": {
+          "short": "Particulate emission damage",
+          "values": None
+        },
+        "Birth rate, crude (per 1,000 people) [SP.DYN.CBRT.IN]": {
+          "short": "Birth rate",
+          "values": None
+        },
+        "Cause of death, by communicable diseases and maternal, prenatal and nutrition conditions (% of total) [SH.DTH.COMM.ZS]": {
+          "short": "Death by communicable diseases",
+          "values": None
+        },
+        "Cause of death, by non-communicable diseases (% of total) [SH.DTH.NCOM.ZS]": {
+          "short": "Death by non-communicable diseases",
+          "values": None
+        },
+        "Domestic general government health expenditure per capita (current US$) [SH.XPD.GHED.PC.CD]": {
+          "short": "Health expenditure per capita",
+          "values": None
+        },
+        "Individuals using the Internet (% of population) [IT.NET.USER.ZS]": {
+          "short": "Internet use",
+          "values": None
+        },
+        "Lifetime risk of maternal death (%) [SH.MMR.RISK.ZS]": {
+          "short": "Risk of maternal death percent",
+          "values": None
+        },
+        "Lifetime risk of maternal death (1 in: rate varies by country) [SH.MMR.RISK]": {
+          "short": "Risk of maternal death ratio",
+          "values": None
+        },
+        "Maternal mortality ratio (modeled estimate, per 100,000 live births) [SH.STA.MMRT]": {
+          "short": "Maternal mortality ratio",
+          "values": None
+        },
+        "Mortality from CVD, cancer, diabetes or CRD between exact ages 30 and 70, female (%) [SH.DYN.NCOM.FE.ZS]": {
+          "short": "Female CVD, cancer, diabetes or CRD mortality",
+          "values": None
+        },
+        "Mortality rate attributed to household and ambient air pollution, age-standardized (per 100,000 population) [SH.STA.AIRP.P5]": {
+          "short": "General mortality rate due to air pollution",
+          "values": None
+        },
+        "Mortality rate attributed to household and ambient air pollution, age-standardized, female (per 100,000 female population) [SH.STA.AIRP.FE.P5]": {
+          "short": "Female mortality rate due to air pollution",
+          "values": None
+        },
+        "Mortality rate attributed to household and ambient air pollution, age-standardized, male (per 100,000 male population) [SH.STA.AIRP.MA.P5]": {
+          "short": "Male mortality rate due to air pollution",
+          "values": None
+        },
+        "Mortality rate attributed to unintentional poisoning, female (per 100,000 female population) [SH.STA.POIS.P5.FE]": {
+          "short": "Unintentional poisoning mortality",
+          "values": None
+        },
+        "Mortality rate attributed to unsafe water, unsafe sanitation and lack of hygiene (per 100,000 population) [SH.STA.WASH.P5]": {
+          "short": "Unsafe sanitation mortality",
+          "values": None
+        },
+        "People using at least basic drinking water services (% of population) [SH.H2O.BASW.ZS]": {
+          "short": "Basic drinking water usage",
+          "values": None
+        },
+        "People using at least basic sanitation services (% of population) [SH.STA.BASS.ZS]": {
+          "short": "General basic sanitation usage",
+          "values": None
+        },
+        "People using at least basic sanitation services, urban (% of urban population) [SH.STA.BASS.UR.ZS]": {
+          "short": "Urban basic sanitation usage",
+          "values": None
+        },
+        "Prevalence of anemia among children (% of children under 5) [SH.ANM.CHLD.ZS]": {
+          "short": "Anemia among children percentage",
+          "values": None
+        }
+    }
+    expected_feature_rows_list = list(expected_feature_rows.keys())
+    expected_feature_rows_list.sort()
 
-        # Adjusted savings: particulate emission damage (% of GNI) [NY.ADJ.DPEM.GN.ZS]
-        #   row off by one. Has feature as index.
-        asped_row = student_df[student_df.index == 'Adjusted savings: particulate emission damage (% of GNI) [NY.ADJ.DPEM.GN.ZS]']
-        assert len(asped_row) > 0, "Couldn't find row 'Adjusted savings: particulate emission damage (% of GNI) [NY.ADJ.DPEM.GN.ZS]'"
-        asped_median = asped_row[cleaned_rows_dict['feature']].iloc[0]
-        asped_mean = asped_row[cleaned_rows_dict['median']].iloc[0]
-        asped_variance = asped_row[cleaned_rows_dict['mean']].iloc[0]
-    else:
-        escaped = True
-        ate_row = student_df[student_df[cleaned_rows_dict['feature']] == 'Access to electricity, rural (% of rural population) [EG.ELC.ACCS.RU.ZS]']
-        assert len(ate_row) > 0, "Couldn't find row 'Access to electricity, rural (% of rural population) [EG.ELC.ACCS.RU.ZS]'."
-        ate_median = ate_row[cleaned_rows_dict['median']].iloc[0]
-        ate_mean = ate_row[cleaned_rows_dict['mean']].iloc[0]
-        ate_variance = ate_row[cleaned_rows_dict['variance']].iloc[0]
-
-        asped_row = student_df[student_df[cleaned_rows_dict['feature']] == 'Adjusted savings: particulate emission damage (% of GNI) [NY.ADJ.DPEM.GN.ZS]']
-        assert len(asped_row) > 0, "Couldn't find row 'Adjusted savings: particulate emission damage (% of GNI) [NY.ADJ.DPEM.GN.ZS]'."
-        asped_median = asped_row[cleaned_rows_dict['median']].iloc[0]
-        asped_mean = asped_row[cleaned_rows_dict['mean']].iloc[0]
-        asped_variance = asped_row[cleaned_rows_dict['variance']].iloc[0]
+    for feature in expected_feature_rows_list:
+        feature_row = student_df[student_df[cleaned_rows_dict['feature']] == feature]
+        assert len(feature_row) > 0, "Couldn't find row '{}'".format(feature)
+        
+        feature_median = feature_row[cleaned_rows_dict['median']].iloc[0]
+        feature_mean = feature_row[cleaned_rows_dict['mean']].iloc[0]
+        feature_variance = feature_row[cleaned_rows_dict['variance']].iloc[0]
+        values = {
+          'median': feature_median,
+          'mean': feature_mean,
+          'variance': feature_variance,
+        }
+        expected_feature_rows[feature]['values'] = values
 
     timelog("Testing script retrieved the following values from {}:".format(student_output_name))
-    print("Found values for 'access to electricity' - median: {}, mean: {}, variance: {}.".format(ate_median, ate_mean, ate_variance))
-    print("Found values for 'adjusted savings'      - median: {}, mean: {}, variance: {}.".format(asped_median, asped_mean, asped_variance))
+
+    maxlen = max([len(expected_feature_rows[x]['short']) for x in list(expected_feature_rows.keys())])
+
+    for feature, data in expected_feature_rows.items():
+        print("Found values for '{}'{} - median: {}, mean: {}, variance: {}.".format(data['short'], " "*(maxlen - len(data['short'])), data['values']['median'], data['values']['mean'], data['values']['variance']))
 
     timelog("Checking program output.")
     dt_match = re.search(accuracy_dt_re, program_output)
