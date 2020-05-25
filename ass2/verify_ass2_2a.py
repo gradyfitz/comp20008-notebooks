@@ -9,13 +9,17 @@
 #    The second line may be escaped with quotes, as you might expect and spaces
 #        will be ignored.
 # 4. That your program prints the following output:
+#    Accuracy of decision tree: x.yyy
+#    Accuracy of k-nn (k=5): x.yyy
+#    Accuracy of k-nn (k=10): x.yyy
+#    -------- Or in percentages --------
 #    Accuracy of decision tree: xxx.yyy%
 #    Accuracy of k-nn (k=5): xxx.yyy%
 #    Accuracy of k-nn (k=10): xxx.yyy%
 # 5. That the verification script is able to extract these from your output correctly:
-#    Decision tree accuracy: xxx.yyy%
-#    k-nn (k=5)  accuracy: xxx.yyy%
-#    k-nn (k=10) accuracy: xxx.yyy%
+#    Decision tree accuracy: x.yyy
+#    k-nn (k=5)  accuracy: x.yyy
+#    k-nn (k=10) accuracy: x.yyy
 #
 #    NOTE: The correctness of these measures won't be evaluated by this testing
 #          script.
@@ -73,9 +77,12 @@ student_output_name = "task2a.csv"
 pattern_multiple_spaces = r" +"
 pattern_multiple_spaces_repl = r" "
 
-accuracy_dt_re    = r'Accuracy of decision tree:\s*(\d{0,3}(\.\d{0,3})?)'
-accuracy_knn5_re  = r'Accuracy of k-nn \(k=5\):\s*(\d{0,3}(\.\d{0,3})?)'
-accuracy_knn10_re = r'Accuracy of k-nn \(k=10\):\s*(\d{0,3}(\.\d{0,3})?)'
+accuracy_dt_p_re    = r'Accuracy of decision tree:\s*(\d{0,3}(\.\d+)?)\%'
+accuracy_knn5_p_re  = r'Accuracy of k-nn \(k=5\):\s*(\d{0,3}(\.\d+)?)\%'
+accuracy_knn10_p_re = r'Accuracy of k-nn \(k=10\):\s*(\d{0,3}(\.\d+)?)\%'
+accuracy_dt_re      = r'Accuracy of decision tree:\s*(\d{0,1}(\.\d{0,3})?)'
+accuracy_knn5_re    = r'Accuracy of k-nn \(k=5\):\s*(\d{0,1}(\.\d{0,3})?)'
+accuracy_knn10_re   = r'Accuracy of k-nn \(k=10\):\s*(\d{0,1}(\.\d{0,3})?)'
 
 def clean_string(string: str) -> str:
     cstring = string
@@ -251,21 +258,35 @@ try:
 
     timelog("Checking program output.")
     dt_match = re.search(accuracy_dt_re, program_output)
+    dt_match_p = re.search(accuracy_dt_p_re, program_output)
     knn5_match = re.search(accuracy_knn5_re, program_output)
+    knn5_match_p = re.search(accuracy_knn5_p_re, program_output)
     knn10_match = re.search(accuracy_knn10_re, program_output)
+    knn10_match_p = re.search(accuracy_knn10_p_re, program_output)
 
-    assert dt_match, "Output was missing accuracy of decision tree."
-    assert knn5_match, "Output was missing accuracy of k-nn (k=5)."
-    assert knn10_match, "Output was missing accuracy of k-nn (k=10)."
-
-    dt_accuracy = dt_match.group(1)
-    knn5_accuracy = knn5_match.group(1)
-    knn10_accuracy = knn10_match.group(1)
-
+    assert dt_match or dt_match_p, "Output was missing accuracy of decision tree."
+    assert knn5_match or knn5_match_p, "Output was missing accuracy of k-nn (k=5)."
+    assert knn10_match or knn10_match_p, "Output was missing accuracy of k-nn (k=10)."
+    
+    if dt_match_p:
+        dt_accuracy = float(dt_match_p.group(1)) / 100.0
+    else:
+        dt_accuracy = float(dt_match.group(1))
+        
+    if knn5_match_p:
+        knn5_accuracy = float(knn5_match_p.group(1)) / 100.0
+    else:
+        knn5_accuracy = float(knn5_match.group(1))
+        
+    if knn10_match_p:
+        knn10_accuracy = float(knn10_match_p.group(1)) / 100.0
+    else:
+        knn10_accuracy = float(knn10_match.group(1))
+    
     timelog("Testing retrieved the following values from program output:")
-    print("Decision tree accuracy: {}%".format(dt_accuracy))
-    print("k-nn (k=5)    accuracy: {}%".format(knn5_accuracy))
-    print("k-nn (k=10)   accuracy: {}%".format(knn10_accuracy))
+    print("Decision tree accuracy: {:.3f}".format(dt_accuracy))
+    print("k-nn (k=5)    accuracy: {:.3f}".format(knn5_accuracy))
+    print("k-nn (k=10)   accuracy: {:.3f}".format(knn10_accuracy))
     
     timelog("Script complete.")
 

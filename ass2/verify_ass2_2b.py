@@ -2,6 +2,10 @@
 # 1. That you have the correct file naming (task2b.py in the folder submission).
 # 2. That your file is of the correct file type (python file).
 # 3. That your program prints the following output:
+#    Accuracy of feature engineering: x.yyy
+#    Accuracy of PCA: x.yyy
+#    Accuracy of first four features: x.yyy
+#    -------- Or in percentages --------
 #    Accuracy of feature engineering: xxx.yyy%
 #    Accuracy of PCA: xxx.yyy%
 #    Accuracy of first four features: xxx.yyy%
@@ -95,9 +99,12 @@ python_file_name = "{}/task2b.py".format(submission_folder_name)
 pattern_multiple_spaces = r" +"
 pattern_multiple_spaces_repl = r" "
 
-accuracy_fe_re  = r'Accuracy of feature engineering:\s*(\d{0,3}(\.\d{0,3})?)'
-accuracy_pca_re = r'Accuracy of PCA:\s*(\d{0,3}(\.\d{0,3})?)'
-accuracy_f4f_re = r'Accuracy of first four features:\s*(\d{0,3}(\.\d{0,3})?)'
+accuracy_fe_p_re  = r'Accuracy of feature engineering:\s*(\d{0,3}(\.\d+)?)\%'
+accuracy_pca_p_re = r'Accuracy of PCA:\s*(\d{0,3}(\.\d+)?)\%'
+accuracy_f4f_p_re = r'Accuracy of first four features:\s*(\d{0,3}(\.\d+)?)\%'
+accuracy_fe_re    = r'Accuracy of feature engineering:\s*(\d{0,3}(\.\d{0,3})?)'
+accuracy_pca_re   = r'Accuracy of PCA:\s*(\d{0,3}(\.\d{0,3})?)'
+accuracy_f4f_re   = r'Accuracy of first four features:\s*(\d{0,3}(\.\d{0,3})?)'
 
 def clean_string(string: str) -> str:
     cstring = string
@@ -143,22 +150,36 @@ try:
         (end_time - start_time).total_seconds()))
 
     timelog("Checking program output.")
-    fe_match = re.search(accuracy_fe_re, program_output)
-    pca_match = re.search(accuracy_pca_re, program_output)
-    f4f_match = re.search(accuracy_f4f_re, program_output)
+    fe_match    = re.search(accuracy_fe_re,    program_output)
+    fe_p_match  = re.search(accuracy_fe_p_re,  program_output)
+    pca_match   = re.search(accuracy_pca_re,   program_output)
+    pca_p_match = re.search(accuracy_pca_p_re, program_output)
+    f4f_match   = re.search(accuracy_f4f_re,   program_output)
+    f4f_p_match = re.search(accuracy_f4f_p_re, program_output)
 
-    assert fe_match, "Output was missing accuracy of Feature engineering."
-    assert pca_match, "Output was missing accuracy of PCA."
-    assert f4f_match, "Output was missing accuracy of First four features."
-
-    fe_accuracy  =  fe_match.group(1)
-    pca_accuracy = pca_match.group(1)
-    f4f_accuracy = f4f_match.group(1)
+    assert fe_match or fe_p_match,   "Output was missing accuracy of Feature engineering."
+    assert pca_match or pca_p_match, "Output was missing accuracy of PCA."
+    assert f4f_match or f4f_p_match, "Output was missing accuracy of First four features."
+    
+    if fe_p_match:
+        fe_accuracy  = float(fe_p_match.group(1)) / 100.0
+    else:
+        fe_accuracy  = float(fe_match.group(1))
+        
+    if pca_p_match:
+        pca_accuracy = float(pca_p_match.group(1)) / 100.0
+    else:
+        pca_accuracy = float(pca_match.group(1))
+        
+    if f4f_p_match:
+        f4f_accuracy = float(f4f_p_match.group(1)) / 100.0
+    else:
+        f4f_accuracy = float(f4f_match.group(1))
 
     timelog("Testing retrieved the following values from program output:")
-    print("Feature engineering accuracy: {}%".format(fe_accuracy))
-    print("PCA                 accuracy: {}%".format(pca_accuracy))
-    print("First four features accuracy: {}%".format(f4f_accuracy))
+    print("Feature engineering accuracy: {:.3f}".format(fe_accuracy))
+    print("PCA                 accuracy: {:.3f}".format(pca_accuracy))
+    print("First four features accuracy: {:.3f}".format(f4f_accuracy))
     
     folder_files = list(filter(lambda file: ("task2b" in file['filename'] and "submission/" not in file['filename'][:11]), file_list(".")))
     if len(folder_files) > 0:
