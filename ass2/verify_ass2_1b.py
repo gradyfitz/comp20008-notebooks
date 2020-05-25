@@ -204,8 +204,10 @@ try:
     so_amazon_rows, _ = sol_amazon_df.shape
     so_google_rows, _ = sol_google_df.shape
 
-    assert st_amazon_rows >= so_amazon_rows, "Not all ids have been assigned a block in amazon dataset (amazon_blocks.csv) - {} ids in original, {} ids assigned to blocks in your solution.".format(so_amazon_rows, st_amazon_rows)
-    assert st_google_rows >= so_google_rows, "Not all ids have been assigned a block in google dataset (google_blocks.csv) - {} ids in original, {} ids assigned to blocks in your solution.".format(so_google_rows, st_google_rows)
+    if not st_amazon_rows >= so_amazon_rows:
+        print("Warning: Not all ids have been assigned a block in amazon dataset (amazon_blocks.csv) - {} ids in original, {} ids assigned to blocks in your solution. Ignore this warning if this is intentional.".format(so_amazon_rows, st_amazon_rows))
+    if not st_google_rows >= so_google_rows: 
+        print("Warning: Not all ids have been assigned a block in google dataset (google_blocks.csv) - {} ids in original, {} ids assigned to blocks in your solution. Ignore this warning if this is intentional.".format(so_google_rows, st_google_rows))
 
     TP, FP, FN, TN, n, largest_block_pair = calculate_statistics(student_google_df, student_amazon_df, solution_df, sol_google_df, sol_amazon_df)
 

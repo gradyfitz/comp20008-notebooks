@@ -33,6 +33,31 @@ import re
 import unicodedata
 import os
 import traceback
+import io
+
+def preprocess_lines(file_name: str) -> io.StringIO:
+    """
+    Processes a csv file which does not escape features containing commas.
+    """
+    with open(file_name, 'r') as f:
+        lines = f.read().split("\n")
+        if len(lines) < 1:
+            return ""
+        line_set = [lines[0]]
+        for line in lines[1:]:
+            cols = line.split(",")
+            if len(cols) > 4:
+                if cols[0][0] == "\"":
+                    new_line = cols
+                else:
+                    new_line = ["\"" + ",".join(cols[:-3]) + "\""]
+                    new_line.extend(cols[-3:])
+                new_line = ",".join(new_line)
+                
+            else:
+                new_line = ",".join(cols)
+            line_set.append(new_line)
+        return io.StringIO("\n".join(line_set))
 
 def timelog(*args, **kwargs):
     """
@@ -98,7 +123,7 @@ try:
     # Check file created correctly.
     timelog("Loading {}.".format(student_output_name))
 
-    student_df = pd.read_csv("{}".format(student_output_name))
+    student_df = pd.read_csv(preprocess_lines("{}".format(student_output_name)))
 
     timelog("Loaded {}.".format(student_output_name))
 
