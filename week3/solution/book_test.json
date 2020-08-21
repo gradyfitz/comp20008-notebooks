@@ -1,0 +1,11 @@
+{
+  "id": "book001",
+  "author": "Salinger, J. D.",
+  "title": "The Catcher in the Rye",
+  "price": "44.95",
+  "language": "English",
+  "publish_date": "1951-07-16",
+  "publisher": "Little, Brown and Company",
+  "isbn": "Unknown",
+  "description": "A story about a few important days in the life of Holden Caulfield"
+}
