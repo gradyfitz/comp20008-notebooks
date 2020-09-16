@@ -1,0 +1,45 @@
+{
+	"teams": [{
+			"name": "England",
+			"home": "Twickenham Stadium",
+			"first competed": 1871,
+			"coach": "Eddie Jones"
+		},
+		{
+			"name": "France",
+			"home": "Stade de France",
+			"first competed": 1906,
+			"coach": "Fabien Galthie"
+		},
+		{
+			"name": "Ireland",
+			"home": "Aviva Stadium",
+			"first competed": 1875,
+			"coach": "Andy Farrell"
+		},
+		{
+			"name": "Italy",
+			"home": "Stadio Olimpico",
+			"first competed": 1929,
+			"coach": "Franco Smith"
+		},
+		{
+			"name": "Scotland",
+			"home": "Murrayfield Stadium",
+			"first competed": 1871,
+			"coach": "Gregor Townsend"
+		},
+		{
+			"name": "Wales",
+			"home": "Principality Stadium",
+			"first competed": 1881,
+			"coach": "Wayne Pivac"
+		},
+		{
+			"name": "New Zealand",
+			"home": "Unknown",
+			"first competed": 1903,
+			"coach": "Ian Foster"
+		}
+	]
+}
