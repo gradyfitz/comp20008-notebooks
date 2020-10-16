@@ -151,7 +151,7 @@ try:
     
     # Extract rows.
     expected_feature_rows = {
-        "Access to electricity, rural (% of rural population) [EG.ELC.ACCS.RU.ZS]": {
+        "Access to electricity (% of population) [EG.ELC.ACCS.ZS]": {
           "short": "Access to electricity",
           "values": None
         },
