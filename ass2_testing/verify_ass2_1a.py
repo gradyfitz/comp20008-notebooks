@@ -117,9 +117,9 @@ def validate_FP(rows, lf1_df: pd.DataFrame, lf2_df: pd.DataFrame, FP: int, TN: i
     errors = 0
     for row in rows:
         first_val, second_val = row[0], row[1]
-        if len(col_0_df[col_0_df[col_0_df_map[columns[0]]] == first_val]) <= 0:
+        if len(col_0_df[col_0_df[col_0_df_map[columns[0]]].apply(str) == str(first_val)]) <= 0:
             errors = errors + 1
-        elif len(col_1_df[col_1_df[col_1_df_map[columns[1]]] == second_val]) <= 0:
+        elif len(col_1_df[col_1_df[col_1_df_map[columns[1]]].apply(str) == str(second_val)]) <= 0:
             errors = errors + 1
     # Correct statistics
     return FP - errors, TN + errors, errors
