@@ -285,8 +285,8 @@ try:
     
     timelog("Testing retrieved the following values from program output:")
     print("Decision tree accuracy: {:.3f}".format(dt_accuracy))
-    print("k-nn (k=5)    accuracy: {:.3f}".format(knn5_accuracy))
-    print("k-nn (k=10)   accuracy: {:.3f}".format(knn10_accuracy))
+    print("k-nn (k=3)    accuracy: {:.3f}".format(knn5_accuracy))
+    print("k-nn (k=7)    accuracy: {:.3f}".format(knn10_accuracy))
     
     timelog("Script complete.")
 
